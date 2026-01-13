@@ -1,0 +1,8 @@
+{
+  "/settings/page": "app/settings/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/hero/page": "app/hero/page.js",
+  "/locations/page": "app/locations/page.js",
+  "/about/page": "app/about/page.js"
+}
