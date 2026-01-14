@@ -11,6 +11,7 @@ import { toast } from "sonner"
 
 export default function LoginPage() {
   const router = useRouter()
+  const [checkingAuth, setCheckingAuth] = useState(true)
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     username: "",
@@ -24,7 +25,8 @@ export default function LoginPage() {
         await auth.verify()
         router.push("/dashboard")
       } catch {
-        // Not authenticated
+        // Not authenticated, show login form
+        setCheckingAuth(false)
       }
     }
     checkAuth()
@@ -42,6 +44,18 @@ export default function LoginPage() {
     } finally {
       setLoading(false)
     }
+  }
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Checking authentication...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
